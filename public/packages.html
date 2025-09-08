@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Packages - TripGoals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body class="unified-background">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TripGoals</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="packages.html" class="nav-link active">All Packages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#events" class="nav-link">Events</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="signup-btn" onclick="showSignupModal()">Sign Up</button>
+                </div>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Profile" class="profile-pic">
+                    <span class="username" id="currentUser">John Doe</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>All Travel Packages</h1>
+            <p>Discover amazing destinations across India</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <input type="text" id="searchPackages" placeholder="Search packages..." class="search-input">
+                <select id="categoryFilter" class="filter-select">
+                    <option value="">All Categories</option>
+                    <option value="popular">Popular</option>
+                    <option value="special">Special</option>
+                    <option value="adventure">Adventure</option>
+                </select>
+                <select id="priceFilter" class="filter-select">
+                    <option value="">All Prices</option>
+                    <option value="low">Under ₹20,000</option>
+                    <option value="medium">₹20,000 - ₹50,000</option>
+                    <option value="high">Above ₹50,000</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- All Packages Grid -->
+    <section class="all-packages-section">
+        <div class="container">
+            <div class="packages-grid" id="packagesGrid">
+                <!-- Packages will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TripGoals</h3>
+                    <p>Your trusted partner for incredible travel experiences across India.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="packages.html">All Packages</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 77098 23098</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@tripgoals.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mumbai, Maharashtra, India</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TripGoals. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form" onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="userType" value="user" checked> User
+                    </label>
+                    <label>
+                        <input type="radio" name="userType" value="admin"> Admin
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load all packages on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllPackages();
+            initializeFilters();
+            checkAuthStatus();
+        });
+    </script>
+</body>
+</html>

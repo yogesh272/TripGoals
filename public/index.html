@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripGoals - Discover Incredible India</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body class="unified-background">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TripGoals</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="packages.html" class="nav-link">All Packages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#events" class="nav-link">Events</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="signup-btn" onclick="showSignupModal()">Sign Up</button>
+                </div>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Profile" class="profile-pic">
+                    <span class="username" id="currentUser">John Doe</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Panel Button (visible only for admins) -->
+    <div id="adminPanelBtn" style="display: none;" class="admin-panel-btn">
+        <button onclick="window.location.href='admin.html'" class="admin-btn">
+            <i class="fas fa-cog"></i> Admin Panel
+        </button>
+    </div>
+
+    <!-- Admin Panel Button (visible only for admins) -->
+    <div id="adminPanelBtn" style="display: none;" class="admin-panel-btn">
+        <button onclick="window.location.href='admin.html'" class="admin-btn">
+            <i class="fas fa-cog"></i> Admin Panel
+        </button>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Discover Incredible India</span>
+            </h1>
+            <p class="hero-subtitle">
+                Experience the magic of India with our travel packages
+            </p>
+            <button class="cta-button" onclick="scrollToSection('packages')">
+                <span>Explore All Packages</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Dynamic Posters Section -->
+    <section id="dynamicPosters" class="dynamic-posters-section">
+        <!-- Dynamic posters will be loaded here -->
+    </section>
+
+    <!-- Dynamic Posters Section -->
+    <section id="dynamicPosters" class="dynamic-posters-section">
+        <!-- Dynamic posters will be loaded here -->
+    </section>
+
+    <!-- Main Packages Slider -->
+    <section id="packages" class="packages-section">
+        <div class="container">
+            <h2 class="section-title">Popular Packages</h2>
+            <p class="section-subtitle">Explore India's most sought-after destinations</p>
+            
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <div class="packages-slider" id="mainSlider">
+                        <!-- Package cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Packages Slider -->
+    <section class="special-packages-section">
+        <div class="container">
+            <h2 class="section-title">Special Packages</h2>
+            <p class="section-subtitle">Handpicked exclusive experiences for discerning travelers</p>
+            
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <div class="packages-slider" id="specialSlider">
+                        <!-- Special package cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Poster Section -->
+    <section class="additional-poster-section" id="additionalPosters">
+        <!-- Additional posters will be loaded here -->
+    </section>
+
+    <!-- Additional Poster Section -->
+    <section class="additional-poster-section" id="additionalPosters">
+        <!-- Additional posters will be loaded here -->
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Categories</h2>
+            <p class="section-subtitle">Choose your travel style</p>
+            
+            <div class="categories-grid">
+                <div class="category-card" onclick="openCategoryPage('heritage-culture')">
+                    <div class="category-image">
+                        <img src="https://i.pinimg.com/736x/4b/84/89/4b84892bb493ca6443d5f47cb9a1c6b2.jpg" alt="Heritage and Culture">
+                    </div>
+                    <div class="category-content">
+                        <h3>Heritage & Culture</h3>
+                        <p>Explore India's rich cultural heritage</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('beach-island')">
+                    <div class="category-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6Iur7LarCTXLLXanO__3qtrI9YRPKP-1P8Q&s" alt="Beach & Island">
+                    </div>
+                    <div class="category-content">
+                        <h3>Beach & Island</h3>
+                        <p>Pristine beaches and tropical islands</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('pilgrimage')">
+                    <div class="category-image">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTBHHoZAYz17kWSF4-sc_y7KNkIVjkPQYY5VQ&s" alt="Pilgrimage Circuits">
+                    </div>
+                    <div class="category-content">
+                        <h3>Pilgrimage Circuits</h3>
+                        <p>Sacred journeys and spiritual experiences</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('nature-adventure')">
+                    <div class="category-image">
+                        <img src="https://images.unsplash.com/vector-1751633888465-cff17f965e39?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmF0dXJlJTIwYW5kJTIwYWR2ZW50dXJlfGVufDB8MHwwfHx8MA%3D%3D" alt="Nature & Adventure">
+                    </div>
+                    <div class="category-content">
+                        <h3>Nature & Adventure</h3>
+                        <p>Thrilling adventures in nature</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('trekking')">
+                    <div class="category-image">
+                        <img src="https://plus.unsplash.com/premium_vector-1740368682952-121172781edd?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlJTIwZXhwbG9yZXJ8ZW58MHwwfDB8fHww" alt="Trekking Packages">
+                    </div>
+                    <div class="category-content">
+                        <h3>Trekking Packages</h3>
+                        <p>Mountain trails and hiking adventures</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('wildlife-safari')">
+                    <div class="category-image">
+                        <img src="https://plus.unsplash.com/premium_vector-1682299114007-5d64f938a262?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDV8fHxlbnwwfHx8fHw%3D" alt="Wildlife & Safari">
+                    </div>
+                    <div class="category-content">
+                        <h3>Wildlife & Safari</h3>
+                        <p>Encounter India's magnificent wildlife</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('city-gateways')">
+                    <div class="category-image">
+                        <img src="https://plus.unsplash.com/premium_vector-1711987467596-afcb8dacb343?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fG11bWJhaXxlbnwwfDB8MHx8fDA%3D" alt="City Gateways">
+                    </div>
+                    <div class="category-content">
+                        <h3>City Gateways</h3>
+                        <p>Explore vibrant Indian cities</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('hill-stations')">
+                    <div class="category-image">
+                        <img src="https://plus.unsplash.com/premium_vector-1719514035076-0adda2b5097a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHZpZXclMjBwb2ludCUyMGhpbGx8ZW58MHwwfDB8fHww" alt="Hill Stations">
+                    </div>
+                    <div class="category-content">
+                        <h3>Hill Stations</h3>
+                        <p>Serene mountain retreats</p>
+                    </div>
+                </div>
+                
+                <div class="category-card" onclick="openCategoryPage('states')">
+                    <div class="category-image">
+                        <img src="https://media.istockphoto.com/id/621577320/vector/hand-drawn-india-skyline-vector-illustration.jpg?s=612x612&w=0&k=20&c=24KmWdqzLU8jMTmHNoZrNm-LcQfmQFwLGC40jMZsLoc=" alt="States">
+                    </div>
+                    <div class="category-content">
+                        <h3>States</h3>
+                        <p>Discover India state by state</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Foreigner Guide Section -->
+    <section class="foreigner-guide-section">
+        <div class="container">
+            <div class="guide-poster" onclick="openForeignerGuidePage()">
+                <div class="guide-image">
+                    <img src="https://www.arvholidays.in/images/europebanner.jpg" alt="Special Foreigner Guide">
+                    <div class="guide-overlay">
+                        <div class="guide-content">
+                            <h2>Special Foreigner Guide</h2>
+                            <p>Comprehensive travel assistance for international visitors</p>
+                            <button class="guide-btn">
+                                <span>Learn More</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Adventure Activities Section -->
+    <section id="adventure" class="adventure-section">
+        <div class="container">
+            <h2 class="section-title">Adventure Activities</h2>
+            <p class="section-subtitle">Exciting adventures for thrill seekers</p>
+            
+            <div class="slider-container">
+                <div class="slider-wrapper">
+                    <div class="adventure-slider" id="adventureSlider">
+                        <!-- Adventure cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Polls Section -->
+    <section id="pollsSection" class="polls-section">
+        <!-- Polls will be loaded here -->
+    </section>
+
+    <!-- Polls Section -->
+    <section id="pollsSection" class="polls-section">
+        <!-- Polls will be loaded here -->
+    </section>
+
+    <!-- Floating Social Icons -->
+    <div class="floating-social">
+        <a href="https://wa.me/917709823098" class="social-icon whatsapp" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://www.instagram.com/trip_goals._?igsh=aWFwZ2oxMG02eHZn" class="social-icon instagram" target="_blank">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TripGoals</h3>
+                    <p>Your trusted partner for incredible travel experiences across India. We create memories that last a lifetime.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="packages.html">All Packages</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="#events">Events</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Destinations</h4>
+                    <ul>
+                        <li><a href="#">Kashmir</a></li>
+                        <li><a href="#">Kerala</a></li>
+                        <li><a href="#">Rajasthan</a></li>
+                        <li><a href="#">Goa</a></li>
+                        <li><a href="#">Himachal Pradesh</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 77098 23098</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@tripgoals.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Mumbai, Maharashtra, India</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 TripGoals. All rights reserved.</p>
+                <div class="footer-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form" onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="userType" value="user" checked> User
+                    </label>
+                    <label>
+                        <input type="radio" name="userType" value="admin"> Admin
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <div class="google-login">
+                <button class="google-btn" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    Continue with Google
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>Sign Up</h2>
+            <form class="auth-form" onsubmit="signup(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="signupName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="signupEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="signupPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="radio" name="userType" value="user" checked> User
+                    </label>
+                    <label>
+                        <input type="radio" name="userType" value="admin"> Admin
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn">Sign Up</button>
+            </form>
+            <div class="google-login">
+                <button class="google-btn" onclick="signupWithGoogle()">
+                    <i class="fab fa-google"></i>
+                    Sign up with Google
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Details - TripGoals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body class="unified-background">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>TripGoals</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="packages.html" class="nav-link">All Packages</a>
+                </li>
+                <li class="nav-item">
+                    <a href="about.html" class="nav-link">About Us</a>
+                </li>
+                <li class="nav-item">
+                    <a href="contact.html" class="nav-link">Contact Us</a>
+                </li>
+            </ul>
+            <div class="nav-auth">
+                <div class="auth-buttons" id="authButtons">
+                    <button class="login-btn" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                    <button class="signup-btn" onclick="showSignupModal()">Sign Up</button>
+                </div>
+                <div class="user-profile" id="userProfile" style="display: none;">
+                    <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Profile" class="profile-pic">
+                    <span class="username" id="currentUser">John Doe</span>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Package Detail Content -->
+    <div class="package-detail-container">
+        <div class="container">
+            <div class="package-detail-content" id="packageDetailContent">
+                <!-- Package details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Book Package</h2>
+            <form class="booking-form" onsubmit="submitBooking(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="bookingName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="bookingEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="bookingPhone" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Travelers</label>
+                    <input type="number" id="travelers" min="1" max="10" value="2" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Travel Date</label>
+                    <input type="date" id="travelDate" required>
+                </div>
+                <div class="form-group">
+                    <label>Special Requirements</label>
+                    <textarea id="specialRequirements" rows="4" placeholder="Any special requirements or preferences..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <form class="auth-form" onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Load package details on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadPackageDetails();
+            checkAuthStatus();
+        });
+    </script>
+</body>
+</html>

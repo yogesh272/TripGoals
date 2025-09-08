@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - TripGoals</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <!-- Admin Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-header">
+                <h2>TripGoals Admin</h2>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="#packages" class="admin-nav-link active" onclick="showSection('packages')"><i class="fas fa-suitcase"></i> Manage Packages</a></li>
+                    <li><a href="#posters" class="admin-nav-link" onclick="showSection('posters')"><i class="fas fa-image"></i> Manage Posters</a></li>
+                    <li><a href="#polls" class="admin-nav-link" onclick="showSection('polls')"><i class="fas fa-poll"></i> Manage Polls</a></li>
+                    <li><a href="#analytics" class="admin-nav-link" onclick="showSection('analytics')"><i class="fas fa-chart-bar"></i> Analytics</a></li>
+                    <li><a href="index.html" class="admin-nav-link"><i class="fas fa-home"></i> Back to Website</a></li>
+                    <li><a href="#" class="admin-nav-link" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Admin Content -->
+        <main class="admin-content">
+            <!-- Packages Management -->
+            <section id="packagesSection" class="admin-section active">
+                <div class="section-header">
+                    <h2>Manage Packages</h2>
+                    <button class="btn-primary" onclick="showAddPackageModal()">
+                        <i class="fas fa-plus"></i> Add New Package
+                    </button>
+                </div>
+                
+                <div class="packages-tabs">
+                    <button class="tab-btn active" onclick="showPackageTab('main')">Main Packages</button>
+                    <button class="tab-btn" onclick="showPackageTab('special')">Special Packages</button>
+                    <button class="tab-btn" onclick="showPackageTab('adventure')">Adventure Activities</button>
+                </div>
+                
+                <div class="packages-content">
+                    <div id="mainPackagesTab" class="tab-content active">
+                        <div class="packages-grid" id="adminMainPackages">
+                            <!-- Main packages will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div id="specialPackagesTab" class="tab-content">
+                        <div class="packages-grid" id="adminSpecialPackages">
+                            <!-- Special packages will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div id="adventurePackagesTab" class="tab-content">
+                        <div class="packages-grid" id="adminAdventurePackages">
+                            <!-- Adventure packages will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Posters Management -->
+            <section id="postersSection" class="admin-section">
+                <div class="section-header">
+                    <h2>Manage Posters</h2>
+                    <button class="btn-primary" onclick="showAddPosterModal()">
+                        <i class="fas fa-plus"></i> Add New Poster
+                    </button>
+                </div>
+                
+                <div class="posters-content">
+                    <div class="posters-grid" id="adminPosters">
+                        <!-- Posters will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Polls Management -->
+            <section id="pollsSection" class="admin-section">
+                <div class="section-header">
+                    <h2>Manage Polls</h2>
+                    <button class="btn-primary" onclick="showAddPollModal()">
+                        <i class="fas fa-plus"></i> Create New Poll
+                    </button>
+                </div>
+                
+                <div class="polls-content">
+                    <div class="polls-list" id="adminPolls">
+                        <!-- Polls will be loaded here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics -->
+            <section id="analyticsSection" class="admin-section">
+                <div class="section-header">
+                    <h2>Analytics Overview</h2>
+                </div>
+                
+                <div class="analytics-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-suitcase"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalPackages">0</h3>
+                            <p>Total Packages</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalPosters">0</h3>
+                            <p>Active Posters</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-poll"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="totalPolls">0</h3>
+                            <p>Active Polls</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,234</h3>
+                            <p>Page Views</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Add/Edit Package Modal -->
+    <div id="packageModal" class="modal">
+        <div class="modal-content large-modal">
+            <span class="close" onclick="closeModal('packageModal')">&times;</span>
+            <h2 id="packageModalTitle">Add New Package</h2>
+            <form class="package-form" onsubmit="savePackage(event)">
+                <input type="hidden" id="packageId">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Package Title</label>
+                        <input type="text" id="packageTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subtitle</label>
+                        <input type="text" id="packageSubtitle" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="packageCategory" required>
+                            <option value="main">Main Package</option>
+                            <option value="special">Special Package</option>
+                            <option value="adventure">Adventure Activity</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" id="packagePrice" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="packageImage" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="packageDescription" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Duration (days)</label>
+                    <input type="number" id="packageDuration" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Inclusions (comma-separated)</label>
+                    <textarea id="packageInclusions" rows="3" placeholder="Hotel accommodation, Breakfast, Transportation, Guide"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Save Package</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Poster Modal -->
+    <div id="posterModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('posterModal')">&times;</span>
+            <h2 id="posterModalTitle">Add New Poster</h2>
+            <form class="poster-form" onsubmit="savePoster(event)">
+                <input type="hidden" id="posterId">
+                <div class="form-group">
+                    <label>Poster Title</label>
+                    <input type="text" id="posterTitle" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="posterDescription" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="posterImage" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Link URL (optional)</label>
+                    <input type="url" id="posterLink">
+                </div>
+                
+                <div class="form-group">
+                    <label>Position</label>
+                    <select id="posterPosition" required>
+                        <option value="top">Top Section</option>
+                        <option value="middle">Middle Section</option>
+                        <option value="bottom">Bottom Section</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn">Save Poster</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add/Edit Poll Modal -->
+    <div id="pollModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('pollModal')">&times;</span>
+            <h2 id="pollModalTitle">Create New Poll</h2>
+            <form class="poll-form" onsubmit="savePoll(event)">
+                <input type="hidden" id="pollId">
+                <div class="form-group">
+                    <label>Poll Question</label>
+                    <input type="text" id="pollQuestion" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Poll Options</label>
+                    <div id="pollOptions">
+                        <input type="text" class="poll-option" placeholder="Option 1" required>
+                        <input type="text" class="poll-option" placeholder="Option 2" required>
+                    </div>
+                    <button type="button" class="btn-secondary" onclick="addPollOption()">Add Option</button>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="pollMultiple"> Allow multiple selections
+                    </label>
+                </div>
+                
+                <button type="submit" class="submit-btn">Save Poll</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="admin.js"></script>
+    <script>
+        // Check if user is admin on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
+            if (!currentUser.isAdmin) {
+                alert('Access denied. Admin privileges required.');
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            loadAdminData();
+        });
+    </script>
+</body>
+</html>

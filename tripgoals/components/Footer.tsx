@@ -1,68 +1,88 @@
-import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
+'use client';
+
+import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-black/90 backdrop-blur-md text-white py-16 relative z-10 border-t border-white/10 mt-16">
+      <div className="max-w-7xl mx-auto px-5">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Company Info */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <MapPin className="h-8 w-8 text-blue-400" />
-              <span className="text-2xl font-bold">TripGoals</span>
-            </div>
-            <p className="text-gray-400">
-              Your trusted partner for unforgettable travel experiences around the world.
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              TripGoals
+            </h3>
+            <p className="text-white/80 leading-relaxed text-sm">
+              Your trusted partner for incredible travel experiences across India. We create memories that last a lifetime.
             </p>
             <div className="flex space-x-4">
-              <Facebook className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
-              <Instagram className="h-5 w-5 text-gray-400 hover:text-pink-400 cursor-pointer" />
-              <Twitter className="h-5 w-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
+              <a href="#" className="flex items-center justify-center w-11 h-11 bg-white/10 rounded-full transition-all duration-300 text-lg hover:bg-yellow-400 hover:text-black hover:-translate-y-1">
+                <i className="fab fa-facebook"></i>
+              </a>
+              <a href="#" className="flex items-center justify-center w-11 h-11 bg-white/10 rounded-full transition-all duration-300 text-lg hover:bg-yellow-400 hover:text-black hover:-translate-y-1">
+                <i className="fab fa-instagram"></i>
+              </a>
+              <a href="#" className="flex items-center justify-center w-11 h-11 bg-white/10 rounded-full transition-all duration-300 text-lg hover:bg-yellow-400 hover:text-black hover:-translate-y-1">
+                <i className="fab fa-twitter"></i>
+              </a>
+              <a href="#" className="flex items-center justify-center w-11 h-11 bg-white/10 rounded-full transition-all duration-300 text-lg hover:bg-yellow-400 hover:text-black hover:-translate-y-1">
+                <i className="fab fa-youtube"></i>
+              </a>
             </div>
           </div>
-
+          
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li><a href="/" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-              <li><a href="/categories" className="text-gray-400 hover:text-white transition-colors">Categories</a></li>
-              <li><a href="/packages" className="text-gray-400 hover:text-white transition-colors">All Packages</a></li>
-              <li><a href="/about" className="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+            <h4 className="text-lg font-semibold mb-4 text-gray-200">Quick Links</h4>
+            <ul className="space-y-3">
+              <li><Link href="/" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Home</Link></li>
+              <li><Link href="/packages" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">All Packages</Link></li>
+              <li><Link href="/about" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">About Us</Link></li>
+              <li><Link href="/contact" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Contact Us</Link></li>
             </ul>
           </div>
-
-          {/* Services */}
+          
+          {/* Destinations */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li><span className="text-gray-400">Adventure Tours</span></li>
-              <li><span className="text-gray-400">Luxury Travel</span></li>
-              <li><span className="text-gray-400">Group Packages</span></li>
-              <li><span className="text-gray-400">Custom Itineraries</span></li>
+            <h4 className="text-lg font-semibold mb-4 text-gray-200">Destinations</h4>
+            <ul className="space-y-3">
+              <li><a href="#" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Kashmir</a></li>
+              <li><a href="#" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Kerala</a></li>
+              <li><a href="#" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Rajasthan</a></li>
+              <li><a href="#" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Goa</a></li>
+              <li><a href="#" className="text-white/80 hover:text-yellow-400 transition-colors text-sm">Himachal Pradesh</a></li>
             </ul>
           </div>
-
-          {/* Contact */}
+          
+          {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <Phone className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+            <h4 className="text-lg font-semibold mb-4 text-gray-200">Contact Info</h4>
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 text-white/80 text-sm">
+                <i className="fas fa-phone w-5 text-yellow-400"></i>
+                <span>+91 77098 23098</span>
               </div>
-              <div className="flex items-center space-x-2">
-                <Mail className="h-4 w-4 text-gray-400" />
-                <span className="text-gray-400">info@tripgoals.com</span>
+              <div className="flex items-center space-x-3 text-white/80 text-sm">
+                <i className="fas fa-envelope w-5 text-yellow-400"></i>
+                <span>info@tripgoals.com</span>
+              </div>
+              <div className="flex items-center space-x-3 text-white/80 text-sm">
+                <i className="fas fa-map-marker-alt w-5 text-yellow-400"></i>
+                <span>Mumbai, Maharashtra, India</span>
               </div>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">
-            © 2025 TripGoals. All rights reserved.
+        
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-white/70 text-sm">
+            &copy; 2024 TripGoals. All rights reserved.
           </p>
+          <div className="flex space-x-8">
+            <a href="#" className="text-white/70 hover:text-yellow-400 transition-colors text-sm">Privacy Policy</a>
+            <a href="#" className="text-white/70 hover:text-yellow-400 transition-colors text-sm">Terms of Service</a>
+            <a href="#" className="text-white/70 hover:text-yellow-400 transition-colors text-sm">Cookie Policy</a>
+          </div>
         </div>
       </div>
     </footer>

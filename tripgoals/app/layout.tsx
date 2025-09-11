@@ -1,17 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FloatingButtons from '@/components/FloatingButtons';
+import AuthModals from '@/components/AuthModals';
 import { Toaster } from 'react-hot-toast';
 
-const inter = Inter({ subsets: ['latin'] });
-
 export const metadata: Metadata = {
-  title: 'TripGoals - Discover Amazing Travel Experiences',
-  description: 'Plan your perfect getaway with our curated travel packages and experiences around the world.',
-  keywords: 'travel, vacation, tours, packages, adventure, luxury travel',
+  title: 'TripGoals - Discover Incredible India',
+  description: 'Experience the magic of India with our travel packages',
+  keywords: 'travel, vacation, tours, packages, adventure, India, Kashmir, Kerala, Rajasthan',
 };
 
 export default function RootLayout({
@@ -21,14 +19,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <FloatingButtons />
-        <Toaster position="top-right" />
+      <body className="font-poppins">
+        <div className="unified-background min-h-screen">
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <FloatingButtons />
+          <AuthModals />
+          <Toaster position="top-right" />
+        </div>
       </body>
     </html>
   );

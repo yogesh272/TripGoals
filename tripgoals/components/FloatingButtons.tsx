@@ -1,36 +1,34 @@
 'use client';
 
-import { MessageCircle, Instagram } from 'lucide-react';
-
 export default function FloatingButtons() {
   const handleWhatsAppClick = () => {
-    const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_PHONE_NUMBER || '+1234567890';
-    const message = encodeURIComponent('Hi! I would like to inquire about your travel packages.');
-    window.open(`https://wa.me/${phoneNumber.replace('+', '')}?text=${message}`, '_blank');
+    const whatsappUrl = 'https://wa.me/917709823098';
+    window.open(whatsappUrl, '_blank');
   };
 
   const handleInstagramClick = () => {
-    window.open('https://instagram.com/tripgoals', '_blank');
+    const instagramUrl = 'https://www.instagram.com/trip_goals._?igsh=aWFwZ2oxMG02eHZn';
+    window.open(instagramUrl, '_blank');
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-4">
+    <div className="fixed right-5 bottom-5 z-50 flex flex-col space-y-4">
       {/* WhatsApp Button */}
       <button
         onClick={handleWhatsAppClick}
-        className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+        className="w-15 h-15 rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 backdrop-blur-md border border-white/20 shadow-lg hover:-translate-y-1 hover:scale-110 hover:shadow-xl bg-green-500/90"
         aria-label="Contact us on WhatsApp"
       >
-        <MessageCircle className="h-6 w-6" />
+        <i className="fab fa-whatsapp"></i>
       </button>
 
       {/* Instagram Button */}
       <button
         onClick={handleInstagramClick}
-        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
+        className="w-15 h-15 rounded-full flex items-center justify-center text-white text-2xl transition-all duration-300 backdrop-blur-md border border-white/20 shadow-lg hover:-translate-y-1 hover:scale-110 hover:shadow-xl bg-gradient-to-r from-purple-500/90 via-pink-500/90 to-orange-400/90"
         aria-label="Follow us on Instagram"
       >
-        <Instagram className="h-6 w-6" />
+        <i className="fab fa-instagram"></i>
       </button>
     </div>
   );

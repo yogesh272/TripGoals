@@ -1,9 +1,8 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
-import { Category } from '@/types';
 import { getImageUrl } from '@/lib/appwrite';
+import { Category } from '@/types';
 
 interface CategoryCardProps {
   category: Category;
@@ -12,17 +11,21 @@ interface CategoryCardProps {
 export default function CategoryCard({ category }: CategoryCardProps) {
   return (
     <Link href={`/categories?filter=${category.name}`}>
-      <div className="relative h-64 rounded-2xl overflow-hidden group cursor-pointer">
-        <Image
-          src={getImageUrl(category.imageId)}
-          alt={category.name}
-          fill
-          className="object-cover group-hover:scale-110 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 p-6 text-white">
-          <h3 className="text-2xl font-bold mb-2">{category.name}</h3>
-          <p className="text-gray-200 opacity-90">{category.description}</p>
+      <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-xl overflow-hidden shadow-lg transition-all duration-300 cursor-pointer relative min-w-[120px] flex-shrink-0 hover:-translate-y-1 hover:shadow-xl">
+        <div className="h-20 overflow-hidden relative">
+          <img 
+            src={getImageUrl(category.imageId)} 
+            alt={category.name}
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+          />
+        </div>
+        <div className="p-3 bg-white">
+          <h3 className="text-xs font-semibold mb-1 text-black text-center">
+            {category.name}
+          </h3>
+          <p className="text-black/90 text-[10px] leading-tight text-center">
+            {category.description}
+          </p>
         </div>
       </div>
     </Link>
